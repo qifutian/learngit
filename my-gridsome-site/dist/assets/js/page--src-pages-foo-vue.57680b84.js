@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{QjE3:function(e,n,t){"use strict";t.r(n);var o={name:"FooPage"},s=t("KHd+"),a=Object(s.a)(o,(function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("foo pages")])}),[],!1,null,null,null);n.default=a.exports}}]);
