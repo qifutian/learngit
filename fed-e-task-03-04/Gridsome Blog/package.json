@@ -1,0 +1,20 @@
+{
+  "name": "lg-hw-3-4-blog",
+  "private": true,
+  "scripts": {
+    "build:query": "rollup query/index.js -f cjs -o ./dist/query/index.cjs.js",
+    "build": "yarn build:query && gridsome build",
+    "develop": "yarn build:query && gridsome develop",
+    "explore": "yarn build:query && gridsome explore"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "element-ui": "^2.14.0",
+    "gridsome": "^0.7.0",
+    "gridsome-source-github-api": "^0.1.4",
+    "markdown-it": "^12.0.2"
+  },
+  "devDependencies": {
+    "rollup": "^2.32.1"
+  }
+}
