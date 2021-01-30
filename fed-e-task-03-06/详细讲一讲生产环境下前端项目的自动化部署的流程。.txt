@@ -1,0 +1,65 @@
+代码分为三个部分
+Nodejs => Server
+Shell 脚本
+插件
+
+
+1.jenkins配置
+pipeline部分
+
+pipeline {
+    agent any 
+    parameters {
+        string(name: 'gitAdress', defaultValue: 'git@00.00.00.00:front/front.git', description: '')
+        string(name: 'branch', defaultValue: 'dev', description: '')
+        string(name: 'serverName', defaultValue: '', description: '')
+    }
+    stages {
+        stage('Checkout') { 
+            steps {
+                git branch: '$branch', credentialsId: 'fd2gf832gf7832gf7g32f', url: '$gitAdress' 
+            }
+        }
+          stage('build') { 
+            steps {
+                sh '''
+                echo $PATH
+                which node
+                ls
+                yarn install
+                rm -rf dist
+                rm -rf dist.tar.gz
+                yarn run build
+                tar -zcvf dist.tar.gz dist
+                '''
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                sh '''
+                    scp ${WORKSPACE}/$projectName/dist.tar.gz ppbbbbops@00.00.00.00:/front/front/front
+                    ssh ppbbbbops@00.00.00.00 'cd playbook;ansible-playbook deploy-font-test.yml -e "hosts=zzy des_dir='$serverName'"'
+                '''
+            }
+        }
+        
+    }
+}
+
+2.跳板机配置
+deploy-font-test.yml文件
+
+- hosts: zzy
+  tasks:
+    - name: create
+      shell: cd ~/front/front-front/html && mkdir {{ des_dir }}
+    - name: clear dist
+      shell: rm -rf ~/front/front-front/html/{{ des_dir }}/*
+    - name: copy dist to remote server
+      copy:
+        src: ~/front/dist.tar.gz
+        dest: ~/front/front-front/html/{{ des_dir }}
+    - name: tar dist.tar.gz
+      shell: cd ~/front/front-front/html/{{ des_dir }} && tar -xzvf dist.tar.gz
+    - name: delete dist.tar.gz
+      shell: rm -rf ~/front/front-front/html/{{ des_dir }}/dist.tar.gz
