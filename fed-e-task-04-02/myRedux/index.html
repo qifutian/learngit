@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myRedux</title>
+</head>
+<body>
+  <div>
+    <button id="increment">+</button>
+    <span id="box">0</span>
+    <button id="decrement">-</button>
+  </div>
+  <script src="./myRedux.js"></script>
+  <script src="./middlewares/logger.js"></script>
+  <script src="./middlewares//thunk.js"></script>
+  <script>
+    // 通过 enhancer 对 store 进行增强
+    // 实现异步处理 store
+    // 即实现 redux-thunk 功能
+    function enhancer (createStore) {
+      return function (reducer, preloadedState) {
+        var store = createStore(reducer, preloadedState)
+        var dispatch = store.dispatch
+        function _dispatch (action) {
+          if (typeof action === 'function') {
+            return action(dispatch)
+          }
+          dispatch(action)
+        }
+        return {
+          ...store,
+          dispatch: _dispatch
+        }
+      }
+    }
+    function counterReducer (state, action) {
+      switch (action.type) {
+        case 'increment':
+          return state + 1
+        case 'decrement':
+          return state - 1
+        default:
+          return state
+      }
+    }
+    // var store = createStore(reducer, 0, enhancer)
+    // var store = createStore(reducer, 0, applyMiddleware(logger, thunk))
+    /// var store = createStore(reducer, 0)
+    var rootReducer = combineReducers({ counter: counterReducer })
+    var store = createStore(rootReducer, { counter: 0 })
+
+    store.subscribe(function () {
+      document.getElementById('box').innerHTML = store.getState().counter
+    })
+
+    var actions = bindActionCreators({increment, decrement}, store.dispatch)
+
+    function increment () {
+      return { type: 'increment' }
+    }
+
+    function decrement () {
+      return { type: 'decrement' }
+    }
+
+    document.getElementById('increment').onclick = function () {
+      // store.dispatch({ type: 'increment' })
+      // 异步操作
+      // store.dispatch(function (dispatch) {
+      //   setTimeout(function () {
+      //     dispatch({ type: 'increment' })
+      //   }, 1000)
+      // })
+      // applyMiddleware 中间件执行顺序 logger -> thunk -> reducer
+      // store.dispatch({ type: 'increment' })
+      actions.increment()
+    }
+
+    document.getElementById('decrement').onclick = function () {
+      // store.dispatch({ type: 'decrement' })
+      actions.decrement()
+    }
+  </script>
+</body>
+</html>
