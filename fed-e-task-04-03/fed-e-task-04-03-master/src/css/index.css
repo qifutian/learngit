@@ -1,0 +1,35 @@
+.tab {
+  width: 400px;
+}
+.tab * {
+  display: inline-block;
+}
+.tab > div {
+  width: 50%;
+  height: 80px;
+  text-align: center;
+  cursor: pointer;
+}
+.tab > div span {
+  width: 50px;
+  height: 40px;
+}
+form {
+  width: 400px;
+  text-align: center;
+}
+form input {
+  width: 250px;
+  height: 32px;
+  line-height: 32px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+form .btn {
+  width: 80px;
+  margin-top: 20px;
+}
+.active {
+  border-bottom: 2px solid #ea6f5a;
+  color: #ea6f5a;
+}
