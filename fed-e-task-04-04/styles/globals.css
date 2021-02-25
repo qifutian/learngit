@@ -1,0 +1,51 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.ReactModal__Content {
+  inset: unset !important;
+  width: 512px !important;
+  margin: auto !important;
+  border: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  border-radius: 4px !important;
+  top: 50% !important;
+  left: 50% !important ;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.modal--header,
+.modal--body,
+.modal--footer {
+  padding: 20px;
+}
+
+.modal--header {
+  margin: 0;
+}
+
+.modal--body {
+  margin: 0;
+}
+
+.modal--footer {
+  text-align: right;
+}
+
+.modal--footer button {
+  margin-left: 8px;
+}
