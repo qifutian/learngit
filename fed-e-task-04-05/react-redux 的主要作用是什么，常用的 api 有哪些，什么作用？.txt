@@ -1,0 +1,21 @@
+React-Redux是React发布的组件，作用是方便组件去存取store里的数据。
+主要是将react和redux关联
+
+connect()
+React-Redux最重要的API，是链接redux仓库的关键。
+
+
+Action是把数据从应用(这里之所以不叫 view 是因为这些数据有可能是服务器响应，用户输入或其它非 view 的数据 )传到 store 的有效载荷。它是 store 数据的唯一来源。一般来说你会通过store.dispatch()将 action 传到 store。
+
+Reducers指定了应用状态的变化如何响应 actions并发送到 store 的，记住 actions 只是描述了 有事情发生了 这一事实，并没有描述应用如何更新 state。
+
+store
+store就是把action和reducer联系到一起的对象，store本质上是一个状态树，保存了所有对象的状态。任何UI组件都可以直接从store访问特定对象的状态。
+
+
+Provider其实就只是一个外层容器，它的作用就是通过配合connect来达到跨层级传递数据。使用时只需将Provider定义为整个项目最外层的组件，并设置好store。那么整个项目都可以直接获取这个store。
+
+connect有两个常用的参数：mapStateToProps()  mapDispatchToProps()
+mapStateToProps是一个函数。它的作用是建立一个从外部state（即store中的数据）对象到UI组件的props对象的映射关系。执行后返回一个对象，里面的每一个键值对就是一个映射；mapStateToProps会订阅（绑定）store，每当 （store）state更新的时候，就会自动执行，重新计算UI组件的参数，从而触发UI组件的重新渲染；mapStateToProps的第一个参数总是state对象，还可以使用第二个参数，代表容器组件的props对象。使用ownProps作为参数后，如果容器组件的参数发生变化，也会引发UI组件的重新渲染
+如果connect方法省略mapStateToProps参数，那么UI组件就不会订阅store，就是说store的更新不会引起UI组件的更新。
+mapDispatchToProps是connect函数的第二个参数，用来建立UI组件的参数到store.dispatch方法的映射（分发业务逻辑），也就是说，它定义了用户的哪些操作应该当做Action，传给store，他可以是一个函数，也可以是一个对象；如果mapDispatchToProps是一个函数，会得到dispatch和ownProps（容器组件的props对象）两个参数，应该返回一个对象，该对象的每一个键值对都是一个映射，定义了UI组件的参数怎样发出action;如果mapDispatchToProps是一个对象，它的每个键名也是对应UI组件的同名参数，键值应该是一个参数，会被当做action creator，返回的 action 会由 redux 自动发出

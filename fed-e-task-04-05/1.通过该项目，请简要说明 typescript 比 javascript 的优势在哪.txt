@@ -1,0 +1,15 @@
+语言层面：
+• JavaScript 和 TypeScript 都是 ECMAScript 的具体实现
+• TypeScript 是静态类型，而 JavaScript 是动态类型
+• TypeScript 扩展了 JavaScript 并且完全包容 JavaScript
+• 说白了就是给 JavaScript 增加了类型系统
+
+
+• 执行层面：
+• TypeScript 需要编译
+• JavaScript 不需要编译（除非需要兼容低版本运行环境）
+
+
+ 厂商层面：
+• JavaScript 由 Netscape 率先推出，现在主要由各大浏览器厂商实现
+• 而 TypeScript 目前由微软进行设计和维护

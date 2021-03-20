@@ -1,0 +1,45 @@
+[
+  {
+    "name": "about",
+    "path": "/about",
+    "component": "C:\\\\Users\\\\qft\\\\Desktop\\\\nuxt-demo\\\\pages\\\\about.vue",
+    "chunkName": "pages/about",
+    "_name": "_24729076"
+  },
+  {
+    "path": "/user",
+    "component": "C:\\\\Users\\\\qft\\\\Desktop\\\\nuxt-demo\\\\pages\\\\user.vue",
+    "chunkName": "pages/user",
+    "children": [
+      {
+        "name": "user",
+        "path": "",
+        "component": "C:\\\\Users\\\\qft\\\\Desktop\\\\nuxt-demo\\\\pages\\\\user\\\\index.vue",
+        "chunkName": "pages/user/index",
+        "_name": "_16560650"
+      },
+      {
+        "name": "user-abc",
+        "path": "abc",
+        "component": "C:\\\\Users\\\\qft\\\\Desktop\\\\nuxt-demo\\\\pages\\\\user\\\\abc.vue",
+        "chunkName": "pages/user/abc",
+        "_name": "_531dcf60"
+      },
+      {
+        "name": "user-id",
+        "path": ":id",
+        "component": "C:\\\\Users\\\\qft\\\\Desktop\\\\nuxt-demo\\\\pages\\\\user\\\\_id.vue",
+        "chunkName": "pages/user/_id",
+        "_name": "_155d4690"
+      }
+    ],
+    "_name": "_676a99f2"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\qft\\\\Desktop\\\\nuxt-demo\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_442a6b3b"
+  }
+]

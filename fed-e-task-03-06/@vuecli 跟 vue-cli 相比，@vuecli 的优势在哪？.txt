@@ -1,0 +1,59 @@
+vue-cli与@vue/cli
+vue脚手架版本目前有2,3,4.不管搭建哪个版本的脚手架，首先都需要安装node.
+
+
+vue-cli2的搭建
+node安装成功之后，然后检测一下之前是否安装过脚手架vue-cli,检测方法是输入命令vue -V或者vue --version如果能看到版本号说明之前安装过脚手架，
+全局安装webpack和脚手架:
+继续在窗口里输入以下命令:
+1.npm install webpack -g
+2.npm install -g vue-cli
+也可以安装指定版本的脚手架，命令行执行如下:
+如果是安装3以下版本的脚手架，命令npm install -g vue-cli@版本号
+如果是安装3以上版本的脚手架，命令npm install -g @vue/cli@版本号
+
+
+
+
+
+@vue/cli3搭建
+1.安装node,方法也是node官网下载安装。
+2.命令npm install -g @vue/cli 和命令npm install webpack -g​
+3.vue create project // project是项目名称
+4.第3步执行回车后就让我们选择模板:
+在这里插入图片描述
+default (babel, eslint): 默认配置，只有Babel和eslint，其他的都要自己另外再配置
+Manually select features: 手动配置
+这里我们选择手动配置，也就是选择Manually这个
+
+
+
+
+
+区别
+@vue/cli3和vue-cli2的区别在于：
+
+创建项目 vue create
+
+启动项目 由npm run dev 改成 npm run serve
+
+移除了配置文件目录 config 和 build 文件夹，如果需要自定义配置，需要自己新建vue.config.js文件
+
+移除了 static 静态资源文件夹，新增 public 文件夹，静态资源转移到public目录中，通过/xx.xx可以直接访问，并且 index.html 移动到 public 中
+
+在 src 文件夹中新增了 views 文件夹，用于分类 视图组件 和 公共组件
+
+安装项目时会自动下载node-model文件夹
+
+
+
+
+
+优点
+
+
+插件化
+GUI界面
+快速原型开发
+体积小
+

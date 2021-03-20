@@ -1,0 +1,14 @@
+redux 一开始的设计就是用于处理同步的 Action。通过调用 Action 函数后 dispatch 返回的 type 和 payload ，最终交由 reducer 处理。reducer 匹配到相应的 type 并进行处理。
+
+
+主要是通过applyMiddleware方法，增强action，在处理时候可以异步调用，就是延迟 dispatch action
+
+redux中间件
+
+
+
+action和store之间
+其实中间件就是对dispath一个封装
+如果传递的是一个函数，会让这个函数先执行再传递给store
+如果是一个对象，就直接传递给store
+所以使用中间件以后action可以是一个函数

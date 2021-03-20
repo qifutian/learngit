@@ -1,0 +1,5 @@
+Composition API 兼容了 options API
+
+使用函数形式，减少vue组件之间冗余代码的加载，可以在对应的函数引用中缩减了无用的引用，解决不好拆分复用
+
+options API一个组件中描述中相对复杂，内容包含data,methods,props等，相对的复杂组件，容易冲突，使用mixin，也会有对应的命名冲突，数据来源不清晰

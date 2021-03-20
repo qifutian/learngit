@@ -1,0 +1,29 @@
+Vue.js 3.0 响应式系统的实现原理？
+
+
+1、reactive:
+接收一个参数，判断这参数是否是对象。不是对象则直接返回这个参数，不做响应式处理
+创建拦截器对象 handler, 设置 get/set/deleteProperty
+get
+收集依赖（track）
+返回当前 key 的值。
+如果当前 key 的值是对象，则为当前 key 的对象创建拦截器 handler, 设置 get/set/deleteProperty
+如果当前的 key 的值不是对象，则返回当前 key 的值
+set
+设置的新值和老值不相等时，更新为新值，并触发更新（trigger）
+deleteProperty
+当前对象有这个 key 的时候，删除这个 key 并触发更新（trigger）
+返回 Proxy 对象
+2、effect: 接收一个函数作为参数。作用是：访问响应式对象属性时去收集依赖
+3、track:
+接收两个参数：target 和 key
+如果没有 activeEffect，则说明没有创建 effect 依赖
+如果有 activeEffect，则去判断 WeakMap 集合中是否有 target 属性，
+WeakMap 集合中没有 target 属性，则 set(target, (depsMap = new Map()))
+WeakMap 集合中有 target 属性，则判断 target 属性的 map 值的 depsMap 中是否有 key 属性
+depsMap 中没有 key 属性，则 set(key, (dep = new Set()))
+depsMap 中有 key 属性，则添加这个 activeEffect
+4、trigger:
+判断 WeakMap 中是否有 target 属性
+WeakMap 中没有 target 属性，则没有 target 相应的依赖
+WeakMap 中有 target 属性，则判断 target 属性的 map 值中是否有 key 属性，有的话循环触发收集的 effect()
